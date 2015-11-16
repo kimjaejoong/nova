@@ -33,7 +33,7 @@ from nova import exception
 LOG = logging.getLogger(__name__)
 
 
-def _underscore_to_camelcase(str):
+def _underscore_to_camelcase(str): 
     return ''.join([x[:1].upper() + x[1:] for x in str.split('_')])
 
 
@@ -67,7 +67,7 @@ class APIRequest(object):
             #       and reraise as 400 error.
             raise exception.InvalidRequest()
 
-        args = ec2utils.dict_from_dotted_str(self.args.items())
+        args = ec2utils.dict_from_dotted_str(self.args.items())  #dict
 
         for key in args.keys():
             # NOTE(vish): Turn numeric dict keys into lists
