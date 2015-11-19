@@ -34,17 +34,17 @@ LOG = logging.getLogger(__name__)
 
 
 def _underscore_to_camelcase(str): 
-    return ''.join([x[:1].upper() + x[1:] for x in str.split('_')])
+    return ''.join([x[:1].upper() + x[1:] for x in str.split('_')])   #str=axb_cbd--AxbCdb
 
 
 def _underscore_to_xmlcase(str):
     res = _underscore_to_camelcase(str)
-    return res[:1].lower() + res[1:]
+    return res[:1].lower() + res[1:]      #str=AxbCdb--axbcdb
 
 
 def _database_to_isoformat(datetimeobj):
     """Return a xs:dateTime parsable string from datatime."""
-    return datetimeobj.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z'
+    return datetimeobj.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z' #parse time
 
 
 class APIRequest(object):
@@ -57,7 +57,7 @@ class APIRequest(object):
     def invoke(self, context):
         try:
             method = getattr(self.controller,
-                             ec2utils.camelcase_to_underscore(self.action))
+                             ec2utils.camelcase_to_underscore(self.action)) #get self.controller.(ec2utils.camelcase_to_unserscore(sef.action))
         except AttributeError:
             LOG.debug('Unsupported API request: controller = '
                         '%(controller)s, action = %(action)s',
@@ -120,8 +120,8 @@ class APIRequest(object):
             raise
 
     def _render_data(self, xml, el_name, data):
-        el_name = _underscore_to_xmlcase(el_name)
-        data_el = xml.createElement(el_name)
+        el_name = _underscore_to_xmlcase(el_name) #node
+        data_el = xml.createElement(el_name) #node
 
         if isinstance(data, list):
             for item in data:
