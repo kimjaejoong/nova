@@ -44,7 +44,7 @@ def _underscore_to_xmlcase(str):
 
 def _database_to_isoformat(datetimeobj):
     """Return a xs:dateTime parsable string from datatime."""
-    return datetimeobj.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z' #parse time
+    return datetimeobj.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z' 
 
 
 class APIRequest(object):
@@ -57,7 +57,7 @@ class APIRequest(object):
     def invoke(self, context):
         try:
             method = getattr(self.controller,
-                             ec2utils.camelcase_to_underscore(self.action)) #get self.controller.(ec2utils.camelcase_to_unserscore(sef.action))
+                             ec2utils.camelcase_to_underscore(self.action)) 
         except AttributeError:
             LOG.debug('Unsupported API request: controller = '
                         '%(controller)s, action = %(action)s',
